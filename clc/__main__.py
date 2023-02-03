@@ -37,6 +37,9 @@ def get_all_files(dirs):
     for dir_name in dirs:
         for i in os.scandir(dir_name):
             if os.path.isfile(i):
+                if i.name == 'pyvenv.cfg':
+                    new_dirs = []
+                    break
                 if i.name[i.name.find('.'):] == '.py':
                     res.append(i.path)
             else:
@@ -66,12 +69,16 @@ def count_in_dir(dir_name):
 
 
 if __name__ == '__main__':
-    for i in sys.argv[1:]:
-        if os.path.isfile(i):
-            table = PrettyTable(['file_name', 'code', 'comments', 'empty'])
-            q = count_in_file(i)
-            table.add_row([i, q['code'], q['comments'], q['empty']])
-            print(table)
-        elif os.path.isdir(i):
-            count_in_dir(i)
-        print()
+    if len(sys.argv) == 1:
+        dir = os.getcwd()
+        count_in_dir(dir)
+    else:
+        for i in sys.argv[1:]:
+            if os.path.isfile(i):
+                table = PrettyTable(['file_name', 'code', 'comments', 'empty'])
+                q = count_in_file(i)
+                table.add_row([i, q['code'], q['comments'], q['empty']])
+                print(table)
+            elif os.path.isdir(i):
+                count_in_dir(i)
+            print()

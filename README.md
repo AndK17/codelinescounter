@@ -13,6 +13,7 @@ Python library for counting lines of python code in file or directory
   $ python setup.py install
 ```
 # Использование
+Укзываете один или несколько путей через пробел, если не указать путь подсчет будет происходить в текущей директории
 ```bash
 $ python -m clc {path to file or directory}
 ```

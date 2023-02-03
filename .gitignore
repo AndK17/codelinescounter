@@ -1,3 +1,5 @@
+publishing_and_build_guide.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
